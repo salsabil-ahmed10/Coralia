@@ -1,0 +1,279 @@
+/* تنسيق البطاقة الأساسي المعدل */
+.card {
+    flex: 0 0 auto;
+    width: clamp(120px, 18vw, 160px); /* تصغير العرض */
+    height: clamp(160px, 25vw, 210px); /* تصغير الارتفاع */
+    margin: 8px; /* تقليل الهوامش */
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 300ms;
+    border-radius: 4px; /* زوايا أقل استدارة */
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* تأثيرات الـ hover تبقى كما هي */
+.card:hover .content {
+    transform: rotateY(180deg);
+}
+
+.front {
+    transform: rotateY(180deg);
+    color: white;
+}
+
+.front .front-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 8px; /* تقليل padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.front-content .badge {
+    background-color: #00000055;
+    padding: 2px 8px; /* تصغير padding */
+    border-radius: 8px;
+    backdrop-filter: blur(2px);
+    width: fit-content;
+    font-size: 0.7rem; /* تصغير حجم الخط */
+}
+
+.description {
+    box-shadow: 0px 0px 8px 3px #00000088; /* تصغير الظل */
+    width: 100%;
+    height: 40%;
+    padding: 8px; /* تصغير padding */
+    background-color: #00000099;
+    backdrop-filter: blur(5px);
+    border-radius: 4px;
+    font-size: clamp(8px, 1.8vw, 10px); /* تصغير حجم الخط */
+}
+
+.title {
+    font-size: clamp(10px, 2vw, 12px); /* تصغير حجم الخط */
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.title p {
+    width: 50%;
+}
+
+.card-footer {
+    color: #ffffffc7;
+    margin-top: 4px; /* تقليل المسافة */
+    font-size: clamp(8px, 1.8vw, 10px); /* تصغير حجم الخط */
+}
+
+.front .img, .back .img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: -1;
+}
+
+/* تنسيق الأقسام الأصغر */
+[class$="-coffee-section"] {
+    padding: 6px 0; /* تصغير padding */
+    border-radius: 5px;
+    margin: 6px auto; /* تقليل الهوامش */
+    max-width: 700px; /* عرض أقل بكثير */
+    width: 88%; /* نسبة أقل من العرض */
+    padding-bottom: 12px;
+}
+
+h2 {
+    text-align: center;
+    font-size: clamp(1.1rem, 3.5vw, 1.6rem); /* تصغير حجم العنوان */
+    margin: 8px 0 12px; /* تقليل الهوامش */
+}
+
+/* حاوية البطاقات المعدلة */
+.coffee-container {
+    display: grid;
+    gap: 10px; /* تقليل المسافة بين البطاقات */
+    padding: 0 10px;
+    justify-items: center;
+    margin: 0 auto;
+    max-width: 700px;
+    width: 90%;
+}
+
+/* ألوان الخلفية تبقى كما هي */
+.iced-coffee-section,
+.san-coffee-section,
+.non-coffee-section,
+.tea-coffee-section,
+.cream-coffee-section {
+    background-color: #011d2b;
+}
+
+.hot-coffee-section,
+.smo-coffee-section,
+.fre-coffee-section,
+.dese-coffee-section,
+.car-coffee-section {
+    background-color: #022b3a;
+}
+
+/* Media Queries للتجاوب مع 4 شاشات */
+
+/* الهواتف الصغيرة (أقل من 576px) */
+@media (max-width: 575px) {
+    .coffee-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .card {
+        width: 110px;
+        height: 150px;
+    }
+    
+    [class$="-coffee-section"] {
+        width: 92%;
+        max-width: 100%;
+    }
+}
+
+/* الأجهزة اللوحية الصغيرة (من 576px إلى 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .coffee-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .card {
+        width: 130px;
+        height: 180px;
+    }
+}
+
+/* الأجهزة اللوحية الكبيرة (من 768px إلى 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .coffee-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .card {
+        width: 140px;
+        height: 190px;
+    }
+}
+
+/* اللابتوب والشاشات الكبيرة (992px فأكثر) */
+@media (min-width: 992px) {
+    .coffee-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .card {
+        width: 150px;
+        height: 200px;
+    }
+    
+    [class$="-coffee-section"] {
+        max-width: 800px;
+    }
+}
+
+
+
+.price {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 15px 0;
+  color: #333;
+}
+
+.purchase-btn {
+  background-color: #4a2c2a;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 20px;
+}
+
+.purchase-btn:hover {
+  background-color: #5a3a38;
+}
+
+
+
+.purchase-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  position: relative;
+}
+
+.success-icon {
+  color: #4CAF50;
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal-close-btn {
+  background-color: #4a2c2a;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-close-btn:hover {
+  background-color: #5a3a38;
+}
+
+

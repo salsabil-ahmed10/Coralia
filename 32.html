@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salami Baguette </title>
+  <link rel="stylesheet" href="./home/home.css">
+ <link rel="stylesheet" href="./home/mericano.css">
+ <link rel="icon" type="image/png" href="./home/img/ebf61e27-997f-4c47-94f9-ae9e69821d44.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrom=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<nav class="navbar">
+<img src="./home/img/0fc59a2e-4ade-4e23-b7f0-b46d12d16e66.png" alt="Coralia Logo" style="height: 60px; width: 200px;" />
+
+  <ul class="nav-links">
+    <li><a href="./home.html">Home</a></li>
+    <li><a href="./menu.html">Our Menu</a></li>
+    <li><a href="./Reviews.html">Reviews</a></li>
+    <li><a href="./about.html">About us</a></li>
+
+  </ul>
+     <div class="right-section">
+  <a href="./re.html" id="user-link" class="user-link">
+    <i class="fa-solid fa-user"></i>
+    <span id="user-name-text"></span>
+    <span class="underline"></span>
+  </a>
+</div>
+<div class="menu-icon">
+      <i class="fas fa-bars"></i>
+    </div>
+  </div>
+</nav>
+<div id="sideMenu" class="side-menu">
+  <span style="position:absolute;top:15px;right:20px;color:white;cursor:pointer;font-size:24px" onclick="document.getElementById('sideMenu').classList.remove('open')">
+  &times;
+</span>
+  <ul>
+  <li><a href="menu.html#iced-coffee">Iced Coffee</a></li>  
+    <li><a href="menu.html#hot-coffee">Hot Coffee</a></li>   
+    <li><a href="menu.html#non-cafee">Non-Coffee Drinks</a></li>  
+    <li><a href="menu.html#smo-cafee">Smoothies</a></li>  
+    <li><a href="menu.html#tea-cafee">Hot Teas</a></li>   
+    <li><a href=" menu.html#san-coffee">Sandwiches</a></li>  
+    <li><a href="menu.html#fresh-cafee">Fresh Bakery</a></li>  
+    <li><a href="menu.html#des-cafee">Desserts</a></li> 
+    <li><a href="menu.html#ice-cafee">Ice Cream</a></li>  
+    <li><a href="menu.html#car-cafee">Coralia’s Choice</a></li>
+  </ul>
+</div>
+
+  <br><br>
+
+
+
+
+
+
+
+
+  <section class="product-page">
+    <div class="product-image">
+      <img src="./home/img/menu/Salami & Cheese Baguette.jpg" alt="Iced Latte">
+    </div>
+    <div class="product-content">
+      <h1> Salami Baguette</h1>
+      <p class="description">
+Crunchy, savory, and perfectly satisfying – a classic with a deep-sea twist.
+        <li>Artisan French baguette</li>
+        <li>Thin-cut beef salami</li>
+        <li>Emmental cheese </li>
+        <li>Fresh romaine lettuce</li>
+        <li>Dijon mustard</li>
+      </ul>
+      <div class="price-button-box">
+<div class="price-tag">$20</div> <br><br>
+<a href="./login.html" onclick="localStorage.setItem('bookingConfirmed', true)">
+  <button class="fancy-button">Buy now</button>
+    </div></a>
+  </section>
+
+  <br><br>
+<br><br>
+<br>
+
+<footer class="footer">
+    <div class="footer-container">
+
+      <div class="footer-section">
+      <img src="./home/img/0fc59a2e-4ade-4e23-b7f0-b46d12d16e66.png" alt="Coralia Logo" style="height: 60px; width: 200px;" />
+      <p style="font-size: 15px;">Dive beneath the surface, and discover a café where silence speaks, coffee comforts, and the ocean holds your peace.</p>
+      </div>
+      
+
+
+      <div class="footer-section">
+       <h3>Working Hours</h3>
+      <p>Sunday - Thursday: 10 AM - 11 PM</p>
+      <p>Friday - Saturday: 12 PM - 12 AM</p>
+
+      </div>
+
+      <div class="footer-section">
+        <h3>Links</h3>
+        <ul>
+          <li><a href="./home.html">Home</a></li>
+          <li><a href="./menu.html"> Our Menu</a></li>
+          <li><a href="./Reviews.html">Reviews</a></li> 
+          <li><a href="./about.html"> About us</a></li>
+        </ul>
+      </div>
+     <ul>
+ <div class="footer-section">
+  <h3>Follow Us</h3>
+  <div class="social-icons">
+     <a href="./insta.html" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a> <br> <br>
+    <a href="./face.html" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a> <br> <br>
+    <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a> <br> <br>
+  </div>
+</div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 All rights reserved to Coralia</p>
+    </div>
+  </footer>
+  
+<script>
+  const menuIcon = document.querySelector('.menu-icon');
+  const sideMenu = document.getElementById('sideMenu');
+
+  menuIcon.addEventListener('click', () => {
+    sideMenu.classList.toggle('open');
+  });
+  window.addEventListener('scroll', function () {
+    const reveals = document.querySelectorAll('.reveal');
+    for (let i = 0; i < reveals.length; i++) {
+      const windowHeight = window.innerHeight;
+      const elementTop = reveals[i].getBoundingClientRect().top;
+      const revealPoint = 100;
+
+      if (elementTop < windowHeight - revealPoint) {
+        reveals[i].classList.add('active');
+      }
+    }
+  });
+
+
+const image = document.querySelector('.switch-image');
+const images = [
+  'home/img/underwater-9.jpg',
+  'home/img/under-lowres-mike-kelley-19.webp',
+  'home/img/underwater-1.jpg' // لو عندك صور أكتر، زودي هنا
+];
+
+let currentIndex = 0;
+
+function switchImage() {
+  image.classList.add('fade-out');
+
+  setTimeout(() => {
+    currentIndex = (currentIndex + 1) % images.length;
+    image.src = images[currentIndex];
+    image.classList.remove('fade-out');
+  }, 1000); // وقت التلاشي قبل التبديل
+}
+
+// شغل التبديل كل 5 ثواني
+setInterval(switchImage, 3000);
+
+
+
+  const userName = sessionStorage.getItem("userName");
+  const userNameText = document.getElementById("user-name-text");
+
+  if (userName) {
+    userNameText.textContent = " " + userName;
+  }
+
+
+  function revealOnScroll() {
+    const reveals = document.querySelectorAll('.reveal');
+
+    for (let i = 0; i < reveals.length; i++) {
+      const windowHeight = window.innerHeight;
+      const elementTop = reveals[i].getBoundingClientRect().top;
+      const elementVisible = 150;
+
+      if (elementTop < windowHeight - elementVisible) {
+        reveals[i].classList.add('active');
+      } else {
+        reveals[i].classList.remove('active');
+      }
+    }
+  }
+
+  window.addEventListener('scroll', revealOnScroll);
+
+  // To run it once on load
+  window.addEventListener('load', revealOnScroll);
+</script>
+</body>
+</html>

@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title> Reviews </title>
+   <link rel="icon" type="image/png" href="./home/img/ebf61e27-997f-4c47-94f9-ae9e69821d44.png">
+  <link rel="stylesheet" href="./home/home.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+/* الفقاقيع المتحركة */
+.bubbles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.bubble {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    animation: float 10s infinite ease-in;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { transform: translateY(-100px) scale(1.2); opacity: 0; }
+}
+
+/* عنوان الصفحة */
+.header {
+    text-align: center;
+    padding: 30px 0;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+
+
+/* بطاقات التقييم */
+.reviews-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.review-card {
+    background: #011d2b;
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.rating i.fa-coffee {
+    color: #0784b1;
+    margin-left: 10px;
+}
+
+.stars i.fa-droplet {
+    color: #06b6f6e3;
+    margin: 0 2px;
+}
+
+.stars i.far.fa-droplet {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.review-text {
+    line-height: 1.6;
+}
+
+button {
+  background: transparent;
+  border: 2px solid;
+  color: #F2F2F2;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  width: 100%;
+  border-radius: 20px;
+  margin-top: -10px;
+
+}
+
+button::after {
+  content: '';
+  border-radius: 30px;
+  position: absolute;
+  bottom: 6px;
+  left: 20px;
+  width: 0;
+  height: 2px;
+  background-color: #F2F2F2;
+  transition: width 0.4s ease;
+}
+
+button:hover::after {
+  width: calc(100% - 40px);
+}
+
+button:hover {
+  background-color: #3bb0dac6;
+  color: #F2F2F2;
+}
+
+/* نموذج التقييم */
+.review-form {
+    background: #0c3750;
+    color: #F2F2F2;
+    padding: 25px;
+    border-radius: 15px;
+    max-width: 500px;
+    margin: 20px auto;
+    display: none;
+}
+
+.review-form h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #F2F2F2;
+}
+
+.review-form input,
+.review-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Tajawal', sans-serif;
+}
+
+.review-form textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.rating-input {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.rating-input .stars i {
+    cursor: pointer;
+    margin: 0 5px;
+    font-size: 1.2rem;
+    color: #06b6f6e3;
+}
+
+.review-form button[type="submit"] {
+  background: transparent;
+  border: 2px solid #F2F2F2;
+  color: #F2F2F2;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 30px auto;
+  border-radius: 10px;
+  width: 190px; /* إزالة العرض 100% */
+}
+
+
+
+.review-form button:hover::after {
+  width: calc(100% - 40px);
+}
+
+.review-form button:hover {
+  background-color: #3bb0dac6;
+  color: #F2F2F2;
+}
+
+
+
+
+.add-review-btn {
+  background: transparent;
+  border: 2px solid #F2F2F2;
+  color: #F2F2F2;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 30px auto;
+  border-radius: 10px;
+  width: 180px; /* إزالة العرض 100% */
+}
+
+.add-review-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: 25px;
+  width: 0;
+  height: 2px;
+  background-color: #F2F2F2;
+  transition: width 0.4s ease;
+}
+
+.add-review-btn:hover::after {
+  width: calc(100% - 50px);
+}
+
+.add-review-btn:hover {
+  background-color: rgba(59, 176, 218, 0.78);
+  color: #F2F2F2;
+  transform: scale(1.05);
+}
+
+    </style>
+</head>
+<body>
+
+
+
+<nav class="navbar">
+<img src="./home/img/0fc59a2e-4ade-4e23-b7f0-b46d12d16e66.png" alt="Coralia Logo" style="height: 60px; width: 200px;" />
+
+  <ul class="nav-links">
+    <li><a href="./home.html">Home</a></li>
+    <li><a href="./menu.html">Our Menu</a></li>
+    <li><a href="./Reviews.html">Reviews</a></li>
+    <li><a href="./about.html">About us</a></li>
+
+  </ul>
+
+  
+
+     <div class="right-section">
+  <a href="./re.html" id="user-link" class="user-link">
+    <i class="fa-solid fa-user"></i>
+    <span id="user-name-text"></span>
+    <span class="underline"></span>
+  </a>
+</div>
+
+
+<div class="menu-icon">
+      <i class="fas fa-bars"></i>
+    </div>
+  </div>
+</nav>
+<div id="sideMenu" class="side-menu">
+  <span style="position:absolute;top:15px;right:20px;color:white;cursor:pointer;font-size:24px" onclick="document.getElementById('sideMenu').classList.remove('open')">
+  &times;
+</span>
+  <ul>
+   <li><a href="menu.html#iced-coffee">Iced Coffee</a></li>  
+    <li><a href="menu.html#hot-coffee">Hot Coffee</a></li>   
+    <li><a href="menu.html#non-cafee">Non-Coffee Drinks</a></li>  
+    <li><a href="menu.html#smo-cafee">Smoothies</a></li>  
+    <li><a href="menu.html#tea-cafee">Hot Teas</a></li>   
+    <li><a href=" menu.html#san-coffee">Sandwiches</a></li>  
+    <li><a href="menu.html#fresh-cafee">Fresh Bakery</a></li>  
+    <li><a href="menu.html#des-cafee">Desserts</a></li> 
+    <li><a href="menu.html#ice-cafee">Ice Cream</a></li>  
+    <li><a href="menu.html#car-cafee">Coralia’s Choice</a></li>
+  </ul>
+</div>
+
+    <!-- خلفية الفقاقيع المتحركة -->
+    <div class="bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <!-- عنوان الصفحة -->
+    <div class="header">
+        <h1> Customer Reviews</h1> <br>
+        <p>Share your opinion about your experience with us!</p>
+    </div>
+
+    <!-- بطاقات التقييمات -->
+    <div class="reviews-container">
+        <div class="review-card">
+            <div class="user-info">
+                <div>
+                    <h3>Salsabil</h3> 
+                    <span>15 2025 May</span>
+                </div>
+            </div>
+            <div class="rating">
+                <i class="fas fa-coffee"></i>
+                <div class="stars">
+                    <i class="fas fa-droplet"></i>
+                    <i class="fas fa-droplet"></i>
+                    <i class="fas fa-droplet"></i>
+                    <i class="fas fa-droplet"></i>
+                    <i class="fas fa-droplet"></i>
+                </div>
+            </div>
+            <p class="review-text">"From the moment I entered the café, I felt calm and relaxed... it truly helps me escape the stress of the day."</p>
+        </div>
+
+         <div class="review-card">
+            <div class="user-info">
+                <div>
+                    <h3>Abdulrahman Nour</h3>
+                    <span>10 2025 May</span>
+                </div>
+            </div>
+            <div class="rating">
+                <i class="fas fa-coffee"></i>
+                <div class="stars">
+                    <i class="fas fa-droplet"></i>
+                    <i class="fas fa-droplet"></i>
+                    <i class="fas fa-droplet"></i>
+                    <i class="fas fa-droplet"></i>
+                    <i class="far fa-droplet"></i>
+                </div>
+            </div>
+            <p class="review-text">"Your coffee is unlike anywhere else! The taste keeps me coming back excited every time."</p>
+        </div>
+
+        <div class="review-card">
+            <div class="user-info">
+                <div>
+                    <h3>Karim</h3>
+                    <span>10 2024 July</span>
+                </div>
+            </div>
+            <div class="rating">
+                <i class="fas fa-coffee"></i>
+                <div class="stars">
+                    <i class="fas fa-droplet"></i>
+                    <i class="fas fa-droplet"></i>
+                    <i class="fas fa-droplet"></i>
+                    <i class="fas fa-droplet"></i>
+                    <i class="far fa-droplet"></i>
+                </div>
+            </div>
+            <p class="review-text">"The decor and music create a wonderful vibe... this place has truly become my favorite."</p>
+        </div>
+
+         <div class="review-card">
+            <div class="user-info">
+                <div>
+                    <h3>Salma</h3>
+                    <span>10 2024 July</span>
+                </div>
+            </div>
+            <div class="rating">
+                <i class="fas fa-coffee"></i>
+                <div class="stars">
+                    <i class="fas fa-droplet"></i>
+                    <i class="fas fa-droplet"></i>
+                    <i class="fas fa-droplet"></i>
+                    <i class="fas fa-droplet"></i>
+                    <i class="far fa-droplet"></i>
+                </div>
+            </div>
+            <p class="review-text">"Excellent service and friendly, professional staff... definitely an experience worth repeating."</p>
+        </div>
+    </div>
+
+    <!-- زر إضافة تقييم جديد -->
+    <button class="add-review-btn" id="addReviewBtn">
+        <i class="fas fa-plus"></i> Add your rating
+    </button>
+
+    <!-- نموذج إضافة تقييم (يظهر عند الضغط على الزر) -->
+    <div class="review-form" id="reviewForm">
+        <h3>Share your opinion with us</h3>
+<form id="reviewFormElement">
+                <input type="text" placeholder="Your Name" required>
+            <textarea placeholder="your rating..." required></textarea>
+            <div class="rating-input">
+                <span>Rating</span>
+                <div class="stars">
+                    <i class="far fa-droplet" data-rating="1"></i>
+                    <i class="far fa-droplet" data-rating="2"></i>
+                    <i class="far fa-droplet" data-rating="3"></i>
+                    <i class="far fa-droplet" data-rating="4"></i>
+                    <i class="far fa-droplet" data-rating="5"></i>
+                </div>
+            </div>
+  <button type="submit">
+  <span class="btn-text">Send</span>
+  </button>
+  </form>
+  </div>
+
+
+<br><br>
+<br><br>
+<br>
+
+
+<footer class="footer">
+    <div class="footer-container">
+
+      <div class="footer-section">
+      <img src="./home/img/0fc59a2e-4ade-4e23-b7f0-b46d12d16e66.png" alt="Coralia Logo" style="height: 60px; width: 200px;" />
+      <p style="font-size: 15px;">Dive beneath the surface, and discover a café where silence speaks, coffee comforts, and the ocean holds your peace.</p>
+      </div>
+      
+
+
+      <div class="footer-section">
+       <h3>Working Hours</h3>
+      <p>Sunday - Thursday: 10 AM - 11 PM</p>
+      <p>Friday - Saturday: 12 PM - 12 AM</p>
+
+      </div>
+
+      <div class="footer-section">
+        <h3>Links</h3>
+        <ul>
+          <li><a href="./home.html">Home</a></li>
+          <li><a href="./menu.html"> Our Menu</a></li>
+          <li><a href="./Reviews.html">Reviews</a></li> 
+          <li><a href="./about.html"> About us</a></li>
+        </ul>
+      </div>
+     <ul>
+ <div class="footer-section">
+  <h3>Follow Us</h3>
+  <div class="social-icons">
+    <a href="./insta.html" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a> <br> <br>
+    <a href="./face.html" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a> <br> <br>
+    <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a> <br> <br>
+  </div>
+</div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 All rights reserved to Coralia</p>
+    </div>
+  </footer>
+
+
+
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // إنشاء فقاقيع عشوائية
+    const bubblesContainer = document.querySelector('.bubbles');
+    for (let i = 0; i < 20; i++) {
+        const bubble = document.createElement('div');
+        bubble.classList.add('bubble');
+        const size = Math.random() * 30 + 10;
+        const posX = Math.random() * 100;
+        const delay = Math.random() * 15;
+        const duration = Math.random() * 10 + 10;
+        bubble.style.width = `${size}px`;
+        bubble.style.height = `${size}px`;
+        bubble.style.left = `${posX}%`;
+        bubble.style.animationDelay = `${delay}s`;
+        bubble.style.animationDuration = `${duration}s`;
+        bubblesContainer.appendChild(bubble);
+    }
+
+    // عناصر DOM
+    const addReviewBtn = document.getElementById('addReviewBtn');
+    const reviewForm = document.getElementById('reviewForm');
+    const reviewsContainer = document.querySelector('.reviews-container');
+    const form = reviewForm.querySelector('form');
+
+    // تحميل التقييمات المحفوظة عند فتح الصفحة
+    loadReviews();
+
+    // فتح/إغلاق النموذج
+    addReviewBtn.addEventListener('click', () => {
+        reviewForm.style.display = reviewForm.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // تقييم بالنجوم (قطرات)
+    const stars = document.querySelectorAll('.rating-input .stars i');
+    let selectedRating = 0;
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            selectedRating = parseInt(this.getAttribute('data-rating'));
+            stars.forEach((s, index) => {
+                s.classList.toggle('fas', index < selectedRating);
+                s.classList.toggle('far', index >= selectedRating);
+            });
+        });
+    });
+
+    // إرسال التقييم
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const userName = form.querySelector('input').value;
+        const reviewText = form.querySelector('textarea').value;
+        
+        if (!userName || !reviewText || selectedRating === 0) {
+            alert('الرجاء إكمال جميع الحقول!');
+            return;
+        }
+
+   // إرسال التقييم
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const userName = form.querySelector('input').value;
+    const reviewText = form.querySelector('textarea').value;
+    
+    if (!userName || !reviewText || selectedRating === 0) {
+        alert('الرجاء إكمال جميع الحقول!');
+        return;
+    }
+
+    const newReview = {
+        name: userName,
+        date: new Date().toLocaleDateString('ar-EG'),
+        rating: selectedRating,
+        text: reviewText,
+        img: 'WhatsApp Image 2025-07-20 at 14.20.27_4713e396' // استخدام صورة افتراضية ثابتة
+    };
+
+    saveReview(newReview);
+    addReviewToDOM(newReview);
+    
+    form.reset();
+    stars.forEach(star => star.classList.replace('fas', 'far'));
+    selectedRating = 0;
+    reviewForm.style.display = 'none';
+});
+
+
+
+
+
+function addReviewToDOM(review) {
+    const reviewCard = document.createElement('div');
+    reviewCard.className = 'review-card';
+    reviewCard.innerHTML = `
+        <div class="user-info">
+            <div>
+                <h3>${review.name}</h3>
+                <span>${review.date}</span>
+            </div>
+        </div>
+        <div class="rating">
+            <i class="fas fa-coffee"></i>
+            <div class="stars">
+                ${getStarsHTML(review.rating)}
+            </div>
+        </div>
+        <p class="review-text">${review.text}</p>
+    `;
+    reviewsContainer.prepend(reviewCard);
+}
+
+// دالة مساعدة لإنشاء نجوم التقييم
+function getStarsHTML(rating) {
+    let starsHTML = '';
+    for (let i = 1; i <= 5; i++) {
+        starsHTML += `<i class="${i <= rating ? 'fas' : 'far'} fa-droplet"></i>`;
+    }
+    return starsHTML;
+}
+
+
+
+
+        saveReview(newReview);
+        addReviewToDOM(newReview);
+        
+        form.reset();
+        stars.forEach(star => star.classList.replace('fas', 'far'));
+        selectedRating = 0;
+        reviewForm.style.display = 'none';
+    }
+
+);
+
+
+    
+
+    // دالة لحفظ التقييم في LocalStorage
+    function saveReview(review) {
+        let reviews = JSON.parse(localStorage.getItem('cafeReviews')) || [];
+        reviews.push(review);
+        localStorage.setItem('cafeReviews', JSON.stringify(reviews));
+    }
+
+    // دالة لتحميل التقييمات من LocalStorage
+    function loadReviews() {
+        const reviews = JSON.parse(localStorage.getItem('cafeReviews')) || [];
+        reviews.forEach(review => addReviewToDOM(review));
+    }
+
+    // دالة لإضافة التقييم إلى الصفحة
+    function addReviewToDOM(review) {
+        const reviewCard = document.createElement('div');
+        reviewCard.className = 'review-card';
+        reviewCard.innerHTML = `
+            <div class="user-info">
+                <img src="${review.img}" alt="User">
+                <div>
+                    <h3>${review.name}</h3>
+                    <span>${review.date}</span>
+                </div>
+            </div>
+            <div class="rating">
+                <i class="fas fa-coffee"></i>
+                <div class="stars">
+                    ${'<i class="fas fa-droplet"></i>'.repeat(review.rating)}
+                    ${'<i class="far fa-droplet"></i>'.repeat(5 - review.rating)}
+                </div>
+            </div>
+            <p class="review-text">${review.text}</p>
+        `;
+        reviewsContainer.prepend(reviewCard);
+    }
+});
+
+ const menuIcon = document.querySelector('.menu-icon');
+  const sideMenu = document.getElementById('sideMenu');
+
+  menuIcon.addEventListener('click', () => {
+    sideMenu.classList.toggle('open');
+  });
+  window.addEventListener('scroll', function () {
+    const reveals = document.querySelectorAll('.reveal');
+    for (let i = 0; i < reveals.length; i++) {
+      const windowHeight = window.innerHeight;
+      const elementTop = reveals[i].getBoundingClientRect().top;
+      const revealPoint = 100;
+
+      if (elementTop < windowHeight - revealPoint) {
+        reveals[i].classList.add('active');
+      }
+    }
+  });
+
+
+const image = document.querySelector('.switch-image');
+const images = [
+  'home/img/underwater-9.jpg',
+  'home/img/under-lowres-mike-kelley-19.webp',
+  'home/img/underwater-1.jpg' // لو عندك صور أكتر، زودي هنا
+];
+
+let currentIndex = 0;
+
+function switchImage() {
+  image.classList.add('fade-out');
+
+  setTimeout(() => {
+    currentIndex = (currentIndex + 1) % images.length;
+    image.src = images[currentIndex];
+    image.classList.remove('fade-out');
+  }, 1000); // وقت التلاشي قبل التبديل
+}
+
+// شغل التبديل كل 5 ثواني
+setInterval(switchImage, 3000);
+
+
+
+  const userName = sessionStorage.getItem("userName");
+  const userNameText = document.getElementById("user-name-text");
+
+  if (userName) {
+    userNameText.textContent = " " + userName;
+  }
+
+
+  function revealOnScroll() {
+    const reveals = document.querySelectorAll('.reveal');
+
+    for (let i = 0; i < reveals.length; i++) {
+      const windowHeight = window.innerHeight;
+      const elementTop = reveals[i].getBoundingClientRect().top;
+      const elementVisible = 150;
+
+      if (elementTop < windowHeight - elementVisible) {
+        reveals[i].classList.add('active');
+      } else {
+        reveals[i].classList.remove('active');
+      }
+    }
+  }
+
+  window.addEventListener('scroll', revealOnScroll);
+
+  // To run it once on load
+  window.addEventListener('load', revealOnScroll);
+  
+
+ if (!localStorage.getItem("isLoggedIn")) {
+  localStorage.setItem("isLoggedIn", "true");
+  window.location.href = "/home.html";
+}
+
+
+  window.addEventListener('load', revealOnScroll);
+  
+  // حذف التقييمات عند إغلاق الصفحة
+  window.addEventListener('beforeunload', function() {
+      localStorage.removeItem('cafeReviews');
+  });
+
+  // حذف بيانات تسجيل الدخول إذا لم يكن مسجل دخول
+  if (!localStorage.getItem("isLoggedIn")) {
+      localStorage.setItem("isLoggedIn", "true");
+      window.location.href = "/home.html";
+  }
+</script>
+
+
+</script>
+</body>
+</html>

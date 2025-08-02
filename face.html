@@ -1,0 +1,236 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+	<meta charset="UTF-8">  
+	<meta name="viewport" content="width=device-width, initial-scale=1">  
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />  
+	<!-- ملف CSS -->
+<link rel="stylesheet" href="./home/face.css">
+
+
+<!-- أيقونة -->
+<link rel="icon" href="./home/img/menu/318ea23ca3357e4515adc4f12fc14be6.jpg">
+	<title>Instagram</title>  
+</head>  
+
+<body>  
+	<div class="insta-profile">  
+		
+		<div class="top-bar">  
+			<div class="username">  
+				Coralia<span class="arrow">▼</span> <span class="red-dot">●</span>  
+			</div>  
+			<div class="icons">  
+				<span class="icon">🔈</span>  
+				<span class="icon" onclick="showMenu()">☰</span>  
+			</div>  
+		</div>  
+
+
+		<div class="profile-section">  
+			<div class="story-ring">  
+				<img src="./home/img/ebf61e27-997f-4c47-94f9-ae9e69821d44.png" alt="" />  
+			</div>  
+			<div class="stats">  
+				<div><strong>15</strong><br>posts</div>  
+				<div><strong>1M</strong><br>followers</div>  
+				<div><strong>3</strong><br>following</div>  
+			</div>  
+		</div>  
+
+		
+		<div class="name">Coralia</div>  
+		<b>✨Beneath the waves lies a hidden world — where coffee meets calm, and every sip tells a story from the deep✨</b>  
+		<div class="links">  
+			<a href="#">@CORALIA</a><br>  
+			<a href="#">@CELIA</a><br>  
+			<a href="#">@kok</a><br>  
+			<a href="#">@salma</a><br>  
+		</div>  
+
+
+		<div class="btn-container">  
+			<button class="follow-btn" id="followBtn">Follow</button>  
+			<button class="message-btn">Message</button>  
+		</div>  
+
+		<div class="mid-nav">  
+			<div class="nav-item active" data-tab="tab1">  
+				<i class="fas fa-th"></i>  
+				<div class="indicator"></div>  
+			</div>  
+			<div class="nav-item" data-tab="tab2">  
+				<i class="fas fa-retweet"></i>  
+				<div class="indicator"></div>  
+			</div>  
+			<div class="nav-item" data-tab="tab3">  
+				<i class="fas fa-user-circle"></i>  
+				<div class="indicator"></div>  
+			</div>  
+		</div>  
+
+		
+		<div class="tab-content">  
+			<div class="tab-panel active" id="tab1">  
+				<div class="grid">  
+					<img src="./home/img/7afdb7e0a3c3c8ca4d9e45c15c97735e.jpg" class="post-img" onclick="openPopup(this)">
+					
+					
+					<img src="./home/img/menu/Strawberry Shortcake.jpg" class="post-img" onclick="openPopup(this)">
+					
+					<img src="./home/img/menu/Salami & Cheese Baguette.jpg" class="post-img" onclick="openPopup(this)">
+					
+					<img src="./home/img/aa5b524ea00678b6520b9ad80eb071d2.jpg" class="post-img" onclick="openPopup(this)">
+					
+					<img src="./home/img/menu/non/Strawberry Milk (Korean Style).jpg" class="post-img" onclick="openPopup(this)">
+					
+					<img src="./home/img/menu/icecram/Strawberry Swirl.jpg" class="post-img" onclick="openPopup(this)">
+					
+					<img src="./home/img/menu/tea/Jasmine Green Tea.jpg" class="post-img" onclick="openPopup(this)">
+					
+					<img src="./home/img/menu/tea/Fresh Bakery/Vanilla Glazed Donut.jpg" class="post-img" onclick="openPopup(this)">
+					
+					<img src="./home/img/menu/Biscotti.jpg" class="post-img" onclick="openPopup(this)">
+					
+					<img src="./home/img/menu/Caprese Sandwich.jpg" class="post-img" onclick="openPopup(this)">
+					
+					<img src="./home/img/menu/Iced Cappuccino.jpg" class="post-img" onclick="openPopup(this)">
+					
+					<img src="./home/img/menu/tea/Fresh Bakery/Zaatar Croissant.jpg" class="post-img" onclick="openPopup(this)">
+					
+					<img src="./home/img/menu/93508dfce47fd1d677be051d6527a0b4.jpg" class="post-img" onclick="openPopup(this)">
+					
+					<img src="./home/img/menu/b8d92e3b937b815fb27f85dedcd235a5.jpg" class="post-img" onclick="openPopup(this)">
+					
+					<img src="./home/img/menu/Avocado Toast Sandwich.jpg" class="post-img" onclick="openPopup(this)">
+					
+					
+				</div>  
+			</div>  
+			<div class="tab-panel" id="tab2">  
+				<p style="text-align:center;">No reposts yet.</p>  
+			</div>  
+			<div class="tab-panel" id="tab3">  
+				<p style="text-align:center;">No tagged posts yet.</p>  
+			</div>  
+		</div>  
+	</div>  
+
+	
+	<div id="popup" class="popup" style="display: none; position: fixed; top: 0; left: 0;  
+	width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center;  
+	align-items: center; flex-direction: column; z-index: 9999;">  
+		<span class="close" onclick="closePopup()"   
+			style="color: white; font-size: 30px; position: absolute; top: 10px; right: 20px; cursor: pointer;">&times;</span>  
+		<img id="popup-img" class="popup-img" src=""   
+			style="max-width: 90%; max-height: 80%; border-radius: 10px;" />  
+		<div class="popup-actions"   
+			style="margin-top: 15px; color: white; font-size: 24px;">  
+			<span class="like-icon" onclick="toggleLike(this)"   
+				style="margin-right: 20px; cursor: pointer;">&#10084;</span>  
+			<span class="share-icon" style="cursor: pointer;">&#128257;</span>  
+		</div>  
+	</div>  
+
+	
+	<script>  
+		const followBtn = document.getElementById('followBtn');  
+
+		followBtn.addEventListener('click', () => {  
+			followBtn.classList.toggle('following');  
+
+			if (followBtn.classList.contains('following')) {  
+				followBtn.textContent = 'Following';  
+				followBtn.style.backgroundColor = '#e5e5e5';  
+				followBtn.style.color = 'black';  
+			} else {}  
+		});  
+
+		const navItems = document.querySelectorAll('.mid-nav .nav-item');  
+		const tabPanels = document.querySelectorAll('.tab-panel');  
+
+		navItems.forEach(item => {  
+			item.addEventListener('click', () => {  
+				navItems.forEach(i => i.classList.remove('active'));  
+				item.classList.add('active');  
+
+				const target = item.getAttribute('data-tab');  
+				tabPanels.forEach(panel => {  
+					panel.classList.remove('active');  
+					if (panel.id === target) {  
+						panel.classList.add('active');  
+					}  
+				});  
+			});  
+		});  
+
+		function openPopup(img) {  
+			document.getElementById("popup-img").src = img.src;  
+			document.getElementById("popup").style.display = "flex";  
+		}  
+
+		function closePopup() {  
+			document.getElementById("popup").style.display = "none";  
+		}  
+
+		function toggleLike(el) {  
+			el.classList.toggle("liked");  
+			if (el.classList.contains("liked")) {  
+				el.style.color = "red";  
+			} else {  
+				el.style.color = "white";  
+			}  
+		}  
+	</script>
+
+	
+	<div id="overlay" onclick="hideMenu()"></div>
+	
+<div class="modal" id="modal">
+	<div class="modal-option red">Restrict</div>
+	
+	<div class="modal-option red">Block</div>
+	<div class="modal-option red">Report</div>
+	
+	<div class="modal-option">About this account</div>
+	
+	<div class="modal-option">See shared activity</div>
+	
+	<div class="modal-option">Hide your story</div>
+	
+	<div class="modal-option">Remove follower</div>
+</div>
+
+	
+	<script>
+		function showMenu() {
+			const overlay = document.getElementById("overlay");
+			const modal = document.getElementById("modal");
+			overlay.style.display = "block";
+			modal.style.display = "block";
+			setTimeout(() => {
+				overlay.classList.add("show");
+				modal.classList.add("slide-up");
+			}, 10);
+		}
+
+		function hideMenu() {
+			const overlay = document.getElementById("overlay");
+			const modal = document.getElementById("modal");
+			overlay.classList.remove("show");
+			modal.classList.remove("slide-up");
+			setTimeout(() => {
+				overlay.style.display = "none";
+				modal.style.display = "none";
+			}, 300);
+		}
+		
+		document.querySelector('.follow-button').addEventListener('click', function(e) {
+	e.preventDefault(); 
+});
+	</script>
+	
+
+	
+</body>  
+</html>

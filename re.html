@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Sign up Coralia </title>
+<link rel="stylesheet" href="./home/home.css">
+    <link rel="stylesheet" href="./home/login.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrom=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="icon" type="image/png" href="./home/img/ebf61e27-997f-4c47-94f9-ae9e69821d44.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+<nav class="navbar">
+<img src="./home/img/0fc59a2e-4ade-4e23-b7f0-b46d12d16e66.png" alt="Coralia Logo" style="height: 60px; width: 200px;" />
+
+  <ul class="nav-links">
+    <li><a href="./home.html">Home</a></li>
+    <li><a href="./menu.html">Our Menu</a></li>
+    <li><a href="./Reviews.html">Reviews</a></li>
+        <li><a href="./about.html">About us</a></li>
+
+  </ul>
+
+  
+
+     <div class="right-section">
+  <a href="./re.html" id="user-link" class="user-link">
+    <i class="fa-solid fa-user"></i>
+    <span id="user-name-text"></span>
+    <span class="underline"></span>
+  </a>
+</div>
+
+
+<div class="menu-icon">
+      <i class="fas fa-bars"></i>
+    </div>
+  </div>
+</nav>
+<div id="sideMenu" class="side-menu">
+  <span style="position:absolute;top:15px;right:20px;color:white;cursor:pointer;font-size:24px" onclick="document.getElementById('sideMenu').classList.remove('open')">
+  &times;
+</span>
+  <ul>
+     <li><a href="menu.html#iced-coffee">Iced Coffee</a></li>  
+    <li><a href="menu.html#hot-coffee">Hot Coffee</a></li>   
+    <li><a href="menu.html#non-cafee">Non-Coffee Drinks</a></li>  
+    <li><a href="menu.html#smo-cafee">Smoothies</a></li>  
+    <li><a href="menu.html#tea-cafee">Hot Teas</a></li>   
+    <li><a href=" menu.html#san-coffee">Sandwiches</a></li>  
+    <li><a href="menu.html#fresh-cafee">Fresh Bakery</a></li>  
+    <li><a href="menu.html#des-cafee">Desserts</a></li> 
+    <li><a href="menu.html#ice-cafee">Ice Cream</a></li>  
+    <li><a href="menu.html#car-cafee">Coralia’s Choice</a></li>
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+  <div class="moodboard-bg"></div>
+  <div class="register-polaroid">
+    <h3> <span style="font-family: 'Great Vibes', cursive;"> Welcome To Coralia</span></h3>
+<form onsubmit="handleRegister(event)">
+        <input type="text" id="username" placeholder="Username" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="submit">Submit</button>
+    </form>
+    <div class="register-footer">
+      <p>Do you have an account?</p>
+      <a href="./login.html">Login</a>
+    </div>
+  </div>
+
+<br><br>
+<br><br>
+<br><br>
+<br>
+
+
+<footer class="footer">
+    <div class="footer-container">
+
+      <div class="footer-section">
+      <img src="./home/img/0fc59a2e-4ade-4e23-b7f0-b46d12d16e66.png" alt="Coralia Logo" style="height: 60px; width: 200px;" />
+      <p style="font-size: 15px;">Dive beneath the surface, and discover a café where silence speaks, coffee comforts, and the ocean holds your peace.</p>
+      </div>
+      
+
+
+      <div class="footer-section">
+       <h3>Working Hours</h3>
+      <p>Sunday - Thursday: 10 AM - 11 PM</p>
+      <p>Friday - Saturday: 12 PM - 12 AM</p>
+
+      </div>
+
+      <div class="footer-section">
+        <h3>Links</h3>
+        <ul>
+          <li><a href="./home.html">Home</a></li>
+          <li><a href="./menu.html"> Our Menu</a></li>
+          <li><a href="./Reviews.html">Reviews</a></li>
+          <li><a href="./about.html">About us</a></li>
+
+        </ul>
+      </div>
+     <ul>
+ <div class="footer-section">
+  <h3>Follow Us</h3>
+  <div class="social-icons">
+     <a href="./insta.html" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a> <br> <br>
+    <a href="./face.html" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a> <br> <br>
+    <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a> <br> <br>
+  </div>
+</div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 All rights reserved to Coralia</p>
+    </div>
+  </footer>
+
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const menuIcon = document.querySelector('.menu-icon');
+    const sideMenu = document.getElementById('sideMenu');
+
+    menuIcon.addEventListener('click', () => {
+      sideMenu.classList.toggle('open');
+    });
+
+    window.addEventListener('scroll', function () {
+      const reveals = document.querySelectorAll('.reveal');
+      for (let i = 0; i < reveals.length; i++) {
+        const windowHeight = window.innerHeight;
+        const elementTop = reveals[i].getBoundingClientRect().top;
+        const revealPoint = 100;
+
+        if (elementTop < windowHeight - revealPoint) {
+          reveals[i].classList.add('active');
+        }
+      }
+    });
+
+    // handleRegister is already triggered via onsubmit
+    document.getElementById("registerBtn")?.addEventListener("click", function (e) {
+      e.preventDefault();
+      const name = document.getElementById("nameInput").value.trim();
+      if (name !== "") {
+        localStorage.setItem("userName", name);
+        window.location.href = "home.html";
+      }
+    });
+  });
+
+  function handleRegister(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    localStorage.setItem("registeredName", name);
+    localStorage.setItem("registeredEmail", email);
+    localStorage.setItem("registeredPassword", password);
+
+    sessionStorage.setItem("userName", name);
+    window.location.href = "home.html"; // غيريها حسب صفحة الهوم
+  }
+   document.getElementById("registerBtn").addEventListener("click", function (e) {
+  e.preventDefault();
+
+  const name = document.getElementById("nameInput").value.trim();
+
+  if (name !== "") {
+    localStorage.setItem("userName", name); // ← مهم!
+    window.location.href = "home.html";
+  }
+});
+  const menuIcon = document.querySelector('.menu-icon');
+  const sideMenu = document.getElementById('sideMenu');
+
+  menuIcon.addEventListener('click', () => {
+    sideMenu.classList.toggle('open');
+  });
+
+
+
+
+  localStorage.setItem("isLoggedIn", "true");
+
+ // دي بعد ما يتأكد إن بيانات تسجيل الدخول صح
+  localStorage.setItem("isLoggedIn", "true");
+
+
+ function handleRegister(e) {
+    e.preventDefault();
+
+    const username = document.getElementById("username").value;
+
+    // ممكن هنا تضيفي شروط تحقق من صحة البيانات لو عايزة
+    sessionStorage.setItem("userName", username);
+    localStorage.setItem("isLoggedIn", "true");
+
+    // لو كان جاي من عملية حجز
+    const redirect = sessionStorage.getItem("redirectAfterLogin");
+    if (redirect) {
+      sessionStorage.removeItem("redirectAfterLogin");
+      window.location.href = redirect;
+    } else {
+      // لو مش جاي من زر الحجز، نوديه للرئيسية
+      window.location.href = "sec.html";
+    }
+  }
+
+
+  
+
+</script>
+
+</body>
+</html>
